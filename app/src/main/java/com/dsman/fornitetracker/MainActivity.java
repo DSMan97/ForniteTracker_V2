@@ -9,18 +9,19 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     MediaPlayer mp;
-    private Button start;
+    private Button startButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fornite);
-        start = findViewById(R.id.start);
-        mp = MediaPlayer.create(this, R.raw.ben);
+        startButton = findViewById(R.id.buttonStart);
+        mp = MediaPlayer.create(this, R.raw.fornite);
         mp.start();
+        startSearcher();
     }
 
-    public void start(){
-        start.setOnClickListener(v -> {
+    public void startSearcher(){
+        startButton.setOnClickListener(v -> {
             Intent navigate = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(navigate);
         });

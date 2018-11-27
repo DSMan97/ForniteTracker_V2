@@ -1,14 +1,12 @@
 package com.dsman.fornitetracker;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import android.arch.lifecycle.ViewModelProviders;
-
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -22,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     private ForniteAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Button btnSearch;
+    private FloatingActionButton btnSearch;
     private JobsViewModel epicViewModel;
     private String platform;
     private String epic_nickname;
@@ -34,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
 
         nick_name_fornite = findViewById(R.id.nick_name_fornite);
         spinner_platform = findViewById(R.id.spinner_plataform);
-        btnSearch = findViewById(R.id.buttonGo);
+        btnSearch = findViewById(R.id.gobtn);
         changeData("","");
 
         clickSearchButton();
