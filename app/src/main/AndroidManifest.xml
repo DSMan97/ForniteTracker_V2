@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity"></activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8891074301414208~8516857886"/>
     </application>
 
 </manifest>
