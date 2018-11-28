@@ -10,15 +10,17 @@ import retrofit2.http.Path;
 
 public interface JobApi {
 
+    //Correción de colocación del Get y el baseUrl según lo mencionado en clase
+
     @Headers("TRN-Api-Key: 45db49f2-227b-47a6-a30a-21860a82e52b")
-    @GET("v1/profile/{platform}/{epic-nickname}")
-    Observable<EpicUser> getInfoEpicUser(@Path("platform") String platform , @Path("epic-nickname") String epic_nickname);
+    @GET("profile/{platform}/{epic-nickname}")
+    Observable<EpicUser> getInfoEpicUser(@Path("platform") String platform ,
+                                         @Path("epic-nickname") String epic_nickname);
 
 
     static JobApi Factory() {
-
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.fortnitetracker.com/")
+                .baseUrl("https://api.fortnitetracker.com/v1/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -15,60 +15,88 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-import java.util.List;
+import java.util.HashMap;
+
+
+
 
 public class HomeActivity extends AppCompatActivity {
 
 
-    private EditText nick_name_fornite;
-    private Spinner spinner_platform;
-    private ForniteAdapter adapter;
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
+    private JobsViewModel mViewModel;
     private FloatingActionButton btnSearch;
-    private JobsViewModel epicViewModel;
-    private String platform;
-    private String epic_nickname;
-
+    private Spinner spPlatform;
+    private String mPlatform;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        spPlatform = findViewById(R.id.spPlatform);
 
-        nick_name_fornite = findViewById(R.id.nick_name_fornite);
-        spinner_platform = findViewById(R.id.spinner_plataform);
-        btnSearch = findViewById(R.id.gobtn);
-        changeData("","");
-
+        //Método Botón
+        btnSearch = findViewById(R.id.search_button);
         clickSearchButton();
 
+        //Método de Actualización de Vista pasando los atributos vacios;
+        viewUpdater("", "");
+
+        //Método Generador de Anuncios (Google AdMob)
+        AdView mAdView;
+        mAdView = findViewById(R.id.adView);
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-8891074301414208/7704547084");
+        MobileAds.initialize(this, "ca-app-pub-8891074301414208~8516857886");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
     }
 
+    public void platformChanger(){
+         mPlatform = spPlatform.getSelectedItem().toString();
+        if(mPlatform.equals("PC")){
+            mPlatform = "pc";
+        }
+        if(mPlatform.equals("PS4")){
+            mPlatform = "psn";
+        }
+        if(mPlatform.equals("Xbox")){
+            mPlatform = "xbl";
+        }
+    }
+    public void getAllData() {
+        EditText fortniteUser = findViewById(R.id.userName);
+        platformChanger();
+        String mEpicUserName = fortniteUser.getText().toString();
+        mViewModel.getEpicUserJsonData(mPlatform, mEpicUserName);
+    }
 
-    public void changeData(String platform,String epic_nickname){
-        epicViewModel = ViewModelProviders.of(this).get(JobsViewModel.class);
-        epicViewModel.epicUserData.observe(this, epicUserData -> {
-            if(epicUserData!=null){
-                generateForniteList(epicUserData);
+    public void clickSearchButton() {
+        btnSearch.setOnClickListener(v -> {
+            getAllData();
+        });
+    }
+
+    public void viewUpdater(String platform, String epic_nickname) {
+        mViewModel = ViewModelProviders.of(this).get(JobsViewModel.class);
+        mViewModel.epicUserScoreHM.observe(this, epicUserScoreHashMap -> {
+
+            if (!epicUserScoreHashMap.isEmpty()) {
+                forniteHashMapGenerator(epicUserScoreHashMap);
             }
         });
-        epicViewModel.getData(platform, epic_nickname);
+
+        mViewModel.getEpicUserJsonData(platform, epic_nickname);
     }
 
-    public void generateForniteList(List<EpicUserData> listFornite) {
-        recyclerView = findViewById(R.id.recycleview_fornite);
-        adapter = new ForniteAdapter(listFornite);
-        layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+    public void forniteHashMapGenerator(HashMap<Integer,EpicUserScore> jsonHM) {
+        RecyclerView mRecyclerView = findViewById(R.id.f_recyclerView);
+        ForniteAdapter fAdapter = new ForniteAdapter(jsonHM);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(fAdapter);
     }
 
-  public void clickSearchButton(){
-        btnSearch.setOnClickListener(v -> {
-            platform = spinner_platform.getSelectedItem().toString();
-            epic_nickname = nick_name_fornite.getText().toString();
-            epicViewModel.getData(platform, epic_nickname);
-        });
-    }
 
 }

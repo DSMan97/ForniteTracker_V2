@@ -1,40 +1,33 @@
 package com.dsman.fornitetracker;
 
 class StaticPlayer {
-    private EpicUserData score;
-    private EpicUserData scorePerMatch;
-    private EpicUserData matches;
-    private EpicUserData kills;
+    private EpicUserScore score;
+    private EpicUserScore scorePerMatch;
+    private EpicUserScore matches;
+    private EpicUserScore kills;
 
-    public EpicUserData getScore() {
+    //Haciendolo de cero me he dado cuenta que solo necesito recoger los
+    // atributos de la clase, no setearlos
+    public EpicUserScore getScore() {
         return score;
     }
 
-    public void setScore(EpicUserData score) {
-        this.score = score;
-    }
 
-    public EpicUserData getScorePerMatch() {
+    public EpicUserScore getScorePerMatch() {
         return scorePerMatch;
     }
 
-    public void setScorePerMatch(EpicUserData scorePerMatch) {
-        this.scorePerMatch = scorePerMatch;
-    }
 
-    public EpicUserData getMatches() {
+
+    public EpicUserScore getMatches() {
         return matches;
     }
 
-    public void setMatches(EpicUserData matches) {
-        this.matches = matches;
-    }
 
-    public EpicUserData getKills() {
+
+    public EpicUserScore getKills() {
         return kills;
     }
 
-    public void setKills(EpicUserData kills) {
-        this.kills = kills;
-    }
+
 }

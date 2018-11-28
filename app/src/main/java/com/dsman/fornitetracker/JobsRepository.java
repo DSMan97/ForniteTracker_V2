@@ -5,6 +5,8 @@ import io.reactivex.Observable;
 
 public class JobsRepository {
 
+    //Repository Creado basado en el tutorial de Retrofit2 pasando los paramentros usados
+    //que son platform y epic_nickname
     private static volatile JobsRepository ourInstance = new JobsRepository();
 
     static JobsRepository getInstance() {
@@ -19,13 +21,14 @@ public class JobsRepository {
     }
 
     private JobsRepository() {
+        
     }
 
-    private JobApi mForniteApi = JobApi.Factory();
+    private JobApi mFortniteApi = JobApi.Factory();
 
 
     public Observable<EpicUser> getEpicInfo(String platform, String epic_nickname){
 
-        return mForniteApi.getInfoEpicUser(platform,epic_nickname);
+        return mFortniteApi.getInfoEpicUser(platform,epic_nickname);
     }
 }

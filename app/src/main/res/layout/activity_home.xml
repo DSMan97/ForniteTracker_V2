@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/nick_name_fornite"
+            android:id="@+id/userName"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
             app:layout_constraintVertical_bias="0.055" />
 
             <Spinner
-                android:id="@+id/spinner_plataform"
+                android:id="@+id/spPlatform"
                 android:layout_width="150dp"
                 android:layout_height="46dp"
                 android:layout_marginStart="0dp"
@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleview_fornite"
+        android:id="@+id/f_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
@@ -64,7 +64,8 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +81,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/gobtn"
+        android:id="@+id/search_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="300dp"

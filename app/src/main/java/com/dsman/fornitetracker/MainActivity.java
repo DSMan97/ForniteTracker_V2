@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(v -> {
             Intent navigate = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(navigate);
+            mp.stop();
         });
     }
 }

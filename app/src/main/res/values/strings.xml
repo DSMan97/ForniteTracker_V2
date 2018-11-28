@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">ForniteTracker</string>
     <string-array name="spinnerItems">
-        <item>pc</item>
-        <item>psn</item>
-        <item>xbl</item>
+        <item>PC</item>
+        <item>PS4</item>
+        <item>Xbox</item>
     </string-array>
+    <string name="rankin_title">Ranking</string>
 </resources>
